@@ -1,6 +1,5 @@
 {
   "name": "@dhis2/d2-ui-table",
-  "version": "5.0.1",
   "description": "Table components for d2-ui",
   "main": "./index.js",
   "module": "./index.js",
@@ -41,5 +40,6 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "version": "5.0.1"
 }
