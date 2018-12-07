@@ -10,7 +10,6 @@ import _inherits from 'babel-runtime/helpers/inherits';
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 import { isNil } from 'lodash/fp';
-import { addD2Context } from '@dhis2/d2-ui-core';
 import Color from './Color.component';
 import PublicAccessValue from './PublicAccessValue.component';
 
