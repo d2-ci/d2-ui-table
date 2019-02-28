@@ -1,17 +1,65 @@
-import _slicedToArray from 'babel-runtime/helpers/slicedToArray';
-import _Array$from from 'babel-runtime/core-js/array/from';
-import _Map from 'babel-runtime/core-js/map';
-import _extends from 'babel-runtime/helpers/extends';
-import _Object$getPrototypeOf from 'babel-runtime/core-js/object/get-prototype-of';
-import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
-import _createClass from 'babel-runtime/helpers/createClass';
-import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
-import _inherits from 'babel-runtime/helpers/inherits';
-import PropTypes from 'prop-types';
-import React, { PureComponent } from 'react';
-import { isNil } from 'lodash/fp';
-import Color from './Color.component';
-import PublicAccessValue from './PublicAccessValue.component';
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.findValueRenderer = exports.addValueRenderer = undefined;
+
+var _slicedToArray2 = require('babel-runtime/helpers/slicedToArray');
+
+var _slicedToArray3 = _interopRequireDefault(_slicedToArray2);
+
+var _from = require('babel-runtime/core-js/array/from');
+
+var _from2 = _interopRequireDefault(_from);
+
+var _map = require('babel-runtime/core-js/map');
+
+var _map2 = _interopRequireDefault(_map);
+
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _fp = require('lodash/fp');
+
+var _Color = require('./Color.component');
+
+var _Color2 = _interopRequireDefault(_Color);
+
+var _PublicAccessValue = require('./PublicAccessValue.component');
+
+var _PublicAccessValue2 = _interopRequireDefault(_PublicAccessValue);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function TextValue(_ref) {
     var _ref$value = _ref.value,
@@ -32,7 +80,7 @@ function TextValue(_ref) {
 
     var displayValue = value.toString();
 
-    return React.createElement(
+    return _react2.default.createElement(
         'span',
         { title: displayValue, style: textWrapStyle },
         displayValue
@@ -42,7 +90,7 @@ function TextValue(_ref) {
 function getDateToShowInList(value) {
     var locale = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'en';
 
-    if (isNil(value)) {
+    if ((0, _fp.isNil)(value)) {
         return '';
     }
 
@@ -54,12 +102,12 @@ function getDateToShowInList(value) {
 }
 
 var DateValue = function (_PureComponent) {
-    _inherits(DateValue, _PureComponent);
+    (0, _inherits3.default)(DateValue, _PureComponent);
 
     function DateValue(props, context) {
-        _classCallCheck(this, DateValue);
+        (0, _classCallCheck3.default)(this, DateValue);
 
-        var _this = _possibleConstructorReturn(this, (DateValue.__proto__ || _Object$getPrototypeOf(DateValue)).call(this, props, context));
+        var _this = (0, _possibleConstructorReturn3.default)(this, (DateValue.__proto__ || (0, _getPrototypeOf2.default)(DateValue)).call(this, props, context));
 
         _this.state = {
             uiLocale: 'en'
@@ -67,7 +115,7 @@ var DateValue = function (_PureComponent) {
         return _this;
     }
 
-    _createClass(DateValue, [{
+    (0, _createClass3.default)(DateValue, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
             var _this2 = this;
@@ -82,20 +130,19 @@ var DateValue = function (_PureComponent) {
         value: function render() {
             var displayDate = getDateToShowInList(this.props.value, this.state.uiLocale);
 
-            return React.createElement(TextValue, { value: displayDate });
+            return _react2.default.createElement(TextValue, { value: displayDate });
         }
     }]);
-
     return DateValue;
-}(PureComponent);
+}(_react.PureComponent);
 
 DateValue.contextTypes = {
-    d2: PropTypes.object
+    d2: _propTypes2.default.object
 };
 
 function ObjectWithDisplayName(props) {
     var textValue = props.value && (props.value.displayName || props.value.name);
-    return React.createElement(TextValue, _extends({}, props, { value: textValue }));
+    return _react2.default.createElement(TextValue, (0, _extends3.default)({}, props, { value: textValue }));
 }
 
 var dhis2DateFormat = /^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{2,3}$/;
@@ -124,11 +171,11 @@ function getPublicAccessValue(_ref5) {
 
     var Component = null;
     if (value) {
-        Component = React.createElement(PublicAccessValue, { value: value });
+        Component = _react2.default.createElement(_PublicAccessValue2.default, { value: value });
     }
 
     if (!Component) {
-        Component = React.createElement(TextValue, { value: value });
+        Component = _react2.default.createElement(TextValue, { value: value });
     }
 
     return Component;
@@ -140,7 +187,7 @@ function isPublicAccess(_ref6) {
     return columnName === 'publicAccess';
 }
 
-var valueRenderers = [[isPublicAccess, getPublicAccessValue], [isDateValue, DateValue], [isObjectWithDisplayName, ObjectWithDisplayName], [isColorValue, Color]];
+var valueRenderers = [[isPublicAccess, getPublicAccessValue], [isDateValue, DateValue], [isObjectWithDisplayName, ObjectWithDisplayName], [isColorValue, _Color2.default]];
 
 /**
  * Register a new ValueRenderer. The value renderers are used to render different values in the DataTable. (e.g. colors should be rendered as a Color component).
@@ -152,18 +199,18 @@ var valueRenderers = [[isPublicAccess, getPublicAccessValue], [isDateValue, Date
  *
  * @returns {function} A de-register function to unregister the checker. If you want to remove the valueRenderer from the list of renderers you can use this function to undo the add.
  */
-export var addValueRenderer = function addValueRenderer(checker, component) {
+var addValueRenderer = exports.addValueRenderer = function addValueRenderer(checker, component) {
     valueRenderers.unshift([checker, component]);
 
     /**
      * Un-register the valueRenderer
      */
     return function removeValueRenderer() {
-        var rendererMap = new _Map(valueRenderers);
+        var rendererMap = new _map2.default(valueRenderers);
 
         rendererMap.delete(checker);
 
-        valueRenderers = _Array$from(rendererMap);
+        valueRenderers = (0, _from2.default)(rendererMap);
     };
 };
 
@@ -181,9 +228,9 @@ export var addValueRenderer = function addValueRenderer(checker, component) {
  * @param {object} valueDetails The value and its details. The object has the properties `columnName`, `value` and `valueType`.
  * @returns {function} The React component that can render a value for the passed `valueDetails`.
  */
-export var findValueRenderer = function findValueRenderer(valueDetails) {
+var findValueRenderer = exports.findValueRenderer = function findValueRenderer(valueDetails) {
     var valueCheckers = valueRenderers.map(function (_ref7) {
-        var _ref8 = _slicedToArray(_ref7, 1),
+        var _ref8 = (0, _slicedToArray3.default)(_ref7, 1),
             checker = _ref8[0];
 
         return checker;

@@ -1,13 +1,25 @@
-import React from 'react';
-import { hcl } from 'd3-color';
+'use strict';
 
-export default function Color(_ref) {
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = Color;
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _d3Color = require('d3-color');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Color(_ref) {
     var value = _ref.value;
 
     var styles = {
         color: {
             backgroundColor: value,
-            color: hcl(value).l < 70 ? '#FFF' : '#000',
+            color: (0, _d3Color.hcl)(value).l < 70 ? '#FFF' : '#000',
             textAlign: 'center',
             position: 'relative',
             width: 90,
@@ -17,7 +29,7 @@ export default function Color(_ref) {
         }
     };
 
-    return React.createElement(
+    return _react2.default.createElement(
         'div',
         { style: styles.color },
         value
