@@ -1,35 +1,86 @@
-import _Array$from from 'babel-runtime/core-js/array/from';
-import _Map from 'babel-runtime/core-js/map';
-import _Object$keys from 'babel-runtime/core-js/object/keys';
-import _Object$getPrototypeOf from 'babel-runtime/core-js/object/get-prototype-of';
-import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
-import _createClass from 'babel-runtime/helpers/createClass';
-import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
-import _inherits from 'babel-runtime/helpers/inherits';
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import isArrayOfStrings from 'd2-utilizr/lib/isArrayOfStrings';
-import isIterable from 'd2-utilizr/lib/isIterable';
+'use strict';
 
-import TableHeader from './TableHeader.component';
-import TableRow from './TableRow.component';
-import TableContextMenu from './TableContextMenu.component';
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _from = require('babel-runtime/core-js/array/from');
+
+var _from2 = _interopRequireDefault(_from);
+
+var _map = require('babel-runtime/core-js/map');
+
+var _map2 = _interopRequireDefault(_map);
+
+var _keys = require('babel-runtime/core-js/object/keys');
+
+var _keys2 = _interopRequireDefault(_keys);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _isArrayOfStrings = require('d2-utilizr/lib/isArrayOfStrings');
+
+var _isArrayOfStrings2 = _interopRequireDefault(_isArrayOfStrings);
+
+var _isIterable = require('d2-utilizr/lib/isIterable');
+
+var _isIterable2 = _interopRequireDefault(_isIterable);
+
+var _TableHeader = require('./TableHeader.component');
+
+var _TableHeader2 = _interopRequireDefault(_TableHeader);
+
+var _TableRow = require('./TableRow.component');
+
+var _TableRow2 = _interopRequireDefault(_TableRow);
+
+var _TableContextMenu = require('./TableContextMenu.component');
+
+var _TableContextMenu2 = _interopRequireDefault(_TableContextMenu);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Table = function (_Component) {
-    _inherits(Table, _Component);
+    (0, _inherits3.default)(Table, _Component);
 
     function Table() {
         var _ref;
 
         var _temp, _this, _ret;
 
-        _classCallCheck(this, Table);
+        (0, _classCallCheck3.default)(this, Table);
 
         for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
             args[_key] = arguments[_key];
         }
 
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Table.__proto__ || _Object$getPrototypeOf(Table)).call.apply(_ref, [this].concat(args))), _this), _this.state = _this.getStateFromProps(_this.props), _this.handleRowClick = function (event, rowSource) {
+        return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Table.__proto__ || (0, _getPrototypeOf2.default)(Table)).call.apply(_ref, [this].concat(args))), _this), _this.state = _this.getStateFromProps(_this.props), _this.handleRowClick = function (event, rowSource) {
             var cmt = event.currentTarget;
             _this.setState(function (state) {
                 return {
@@ -44,13 +95,13 @@ var Table = function (_Component) {
                 showContextMenu: false
             });
         }, _this.hasContextMenu = function () {
-            return _Object$keys(_this.props.contextMenuActions || {}).length > 1;
+            return (0, _keys2.default)(_this.props.contextMenuActions || {}).length > 1;
         }, _this.hasSingleAction = function () {
-            return _Object$keys(_this.props.contextMenuActions || {}).length === 1;
-        }, _temp), _possibleConstructorReturn(_this, _ret);
+            return (0, _keys2.default)(_this.props.contextMenuActions || {}).length === 1;
+        }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
     }
 
-    _createClass(Table, [{
+    (0, _createClass3.default)(Table, [{
         key: 'componentWillReceiveProps',
         value: function componentWillReceiveProps(newProps) {
             this.setState(this.getStateFromProps(newProps));
@@ -60,12 +111,12 @@ var Table = function (_Component) {
         value: function getStateFromProps(props) {
             var dataRows = [];
 
-            if (isIterable(props.rows)) {
-                dataRows = props.rows instanceof _Map ? _Array$from(props.rows.values()) : props.rows;
+            if ((0, _isIterable2.default)(props.rows)) {
+                dataRows = props.rows instanceof _map2.default ? (0, _from2.default)(props.rows.values()) : props.rows;
             }
 
             return {
-                columns: isArrayOfStrings(props.columns) ? props.columns : ['name', 'lastUpdated'],
+                columns: (0, _isArrayOfStrings2.default)(props.columns) ? props.columns : ['name', 'lastUpdated'],
                 dataRows: dataRows,
                 activeRow: undefined
             };
@@ -76,7 +127,7 @@ var Table = function (_Component) {
             var _this2 = this;
 
             return this.state.dataRows.map(function (dataRowsSource, dataRowsId) {
-                return React.createElement(TableRow, {
+                return _react2.default.createElement(_TableRow2.default, {
                     key: dataRowsId,
                     dataSource: dataRowsSource,
                     columns: _this2.state.columns,
@@ -92,7 +143,7 @@ var Table = function (_Component) {
         key: 'renderHeaders',
         value: function renderHeaders() {
             return this.state.columns.map(function (headerName, index) {
-                return React.createElement(TableHeader, { key: headerName, isOdd: Boolean(index % 2), name: headerName });
+                return _react2.default.createElement(_TableHeader2.default, { key: headerName, isOdd: Boolean(index % 2), name: headerName });
             });
         }
     }, {
@@ -104,12 +155,12 @@ var Table = function (_Component) {
                 return true;
             };
 
-            var actionsToShow = _Object$keys(this.props.contextMenuActions || {}).filter(actionAccessChecker).reduce(function (availableActions, actionKey) {
+            var actionsToShow = (0, _keys2.default)(this.props.contextMenuActions || {}).filter(actionAccessChecker).reduce(function (availableActions, actionKey) {
                 availableActions[actionKey] = _this3.props.contextMenuActions[actionKey]; // eslint-disable-line
                 return availableActions;
             }, {});
 
-            return React.createElement(TableContextMenu, {
+            return _react2.default.createElement(_TableContextMenu2.default, {
                 target: this.state.contextMenuTarget,
                 onRequestClose: this.hideContextMenu,
                 actions: actionsToShow,
@@ -120,16 +171,16 @@ var Table = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
-            return React.createElement(
+            return _react2.default.createElement(
                 'div',
                 { className: 'd2-ui-table' },
-                React.createElement(
+                _react2.default.createElement(
                     'div',
                     { className: 'd2-ui-table__headers' },
                     this.renderHeaders(),
-                    (this.hasContextMenu() || this.hasSingleAction()) && React.createElement(TableHeader, null)
+                    (this.hasContextMenu() || this.hasSingleAction()) && _react2.default.createElement(_TableHeader2.default, null)
                 ),
-                React.createElement(
+                _react2.default.createElement(
                     'div',
                     { className: 'd2-ui-table__rows' },
                     this.renderRows()
@@ -138,15 +189,14 @@ var Table = function (_Component) {
             );
         }
     }]);
-
     return Table;
-}(Component);
+}(_react.Component);
 
 Table.propTypes = {
-    contextMenuActions: PropTypes.object,
-    contextMenuIcons: PropTypes.object,
-    primaryAction: PropTypes.func,
-    isContextActionAllowed: PropTypes.func
+    contextMenuActions: _propTypes2.default.object,
+    contextMenuIcons: _propTypes2.default.object,
+    primaryAction: _propTypes2.default.func,
+    isContextActionAllowed: _propTypes2.default.func
 };
 
-export default Table;
+exports.default = Table;
